@@ -1,0 +1,482 @@
+/* ==========================================================================
+   ServiceProviderRegister.css
+   Split-screen register page — card-style form (left) + photo/benefits (right).
+   Shares the palette of the other auth pages; amber leads on the
+   provider side of the product.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  --ink: #16233a;
+  --teal: #1f5c56;
+  --teal-dark: #143f3b;
+  --amber: #e8a33d;
+  --amber-dark: #cf8a26;
+  --paper: #f7f5f1;
+  --white: #ffffff;
+  --slate: #5b6472;
+  --slate-light: #8b93a1;
+  --border: #e2e0d9;
+  --error: #b3402a;
+  --error-bg: #fbeae5;
+
+  --radius-s: 6px;
+  --radius-m: 10px;
+  --radius-l: 16px;
+  --shadow-card: 0 24px 60px -30px rgba(22, 35, 58, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Page shell                                                              */
+/* ---------------------------------------------------------------------- */
+
+.provider-register-page {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  min-height: 100vh;
+  background: var(--paper);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--ink);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Left: form                                                              */
+/* ---------------------------------------------------------------------- */
+
+.provider-register-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2.5rem;
+}
+
+.provider-register-card {
+  width: 100%;
+  max-width: 560px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-card);
+  padding: 2.5rem;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Header                                                                   */
+/* ---------------------------------------------------------------------- */
+
+.register-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.register-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+}
+
+.register-header h2 {
+  font-family: "Fraunces", serif;
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 0 0 0.2rem;
+  color: var(--ink);
+}
+
+.register-header p {
+  font-size: 0.92rem;
+  color: var(--slate);
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Error message                                                          */
+/* ---------------------------------------------------------------------- */
+
+.register-error {
+  background: var(--error-bg);
+  color: var(--error);
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 0.7rem 0.9rem;
+  border-radius: var(--radius-s);
+  border: 1px solid rgba(179, 64, 42, 0.25);
+  margin-bottom: 1.25rem;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Form layout                                                             */
+/* ---------------------------------------------------------------------- */
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.1rem;
+}
+
+.form-group label {
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+
+.form-group input,
+.form-group select {
+  font: inherit;
+  font-size: 0.96rem;
+  padding: 0.72rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-s);
+  background: var(--paper);
+  color: var(--ink);
+  transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-group select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%235B6472' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  padding-right: 2.2rem;
+}
+
+.form-group select:invalid {
+  color: var(--slate-light);
+}
+
+.form-group input::placeholder {
+  color: var(--slate-light);
+}
+
+.form-group input:hover,
+.form-group select:hover {
+  border-color: var(--slate-light);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--amber);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(232, 163, 61, 0.2);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Submit button                                                          */
+/* ---------------------------------------------------------------------- */
+
+.provider-register-btn {
+  width: 100%;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--amber);
+  border: none;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-s);
+  cursor: pointer;
+  margin-top: 0.4rem;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.provider-register-btn:hover {
+  background: var(--amber-dark);
+}
+
+.provider-register-btn:active {
+  transform: translateY(1px);
+}
+
+.provider-register-btn:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Login link + back home                                                 */
+/* ---------------------------------------------------------------------- */
+
+.already-account {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--slate);
+  margin-top: 1.5rem;
+}
+
+.already-account a {
+  font-weight: 600;
+  color: var(--teal);
+  text-decoration: none;
+  margin-left: 0.35rem;
+}
+
+.already-account a:hover {
+  text-decoration: underline;
+}
+
+.back-home {
+  display: block;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--slate-light);
+  text-decoration: none;
+  margin-top: 1.5rem;
+}
+
+.back-home:hover {
+  color: var(--teal);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Right: photo / benefits section                                        */
+/* ---------------------------------------------------------------------- */
+
+.provider-register-left {
+  position: relative;
+  min-height: 320px;
+}
+
+.provider-image-wrapper {
+  position: relative;
+  height: 100%;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--teal) 0%, var(--teal-dark) 100%);
+}
+
+.provider-register-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+  mix-blend-mode: luminosity;
+}
+
+.provider-image-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(232, 163, 61, 0.25), transparent 45%),
+    linear-gradient(200deg, rgba(20, 63, 59, 0.55) 10%, rgba(22, 35, 58, 0.88) 90%);
+}
+
+.provider-image-content {
+  position: relative;
+  z-index: 1;
+  padding: 3.5rem 3rem;
+  max-width: 480px;
+  color: var(--white);
+}
+
+.provider-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1.5rem;
+}
+
+.provider-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  background: var(--amber);
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  margin-bottom: 1.1rem;
+}
+
+.provider-image-content h1 {
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  line-height: 1.18;
+  margin: 0 0 1.1rem;
+}
+
+.provider-image-content > p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.82);
+  margin: 0 0 2rem;
+  max-width: 40ch;
+}
+
+.provider-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.benefit-item span {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--teal-dark);
+  background: var(--amber);
+  border-radius: 50%;
+}
+
+.benefit-item p {
+  margin: 0;
+  font-size: 0.94rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Responsive breakpoints                                                 */
+/* ---------------------------------------------------------------------- */
+
+/* Tablet: tighten padding, narrow copy */
+@media (max-width: 1100px) {
+  .provider-register-right {
+    padding: 2.5rem 2rem;
+  }
+
+  .provider-register-card {
+    padding: 2rem;
+  }
+
+  .provider-image-content {
+    padding: 2.5rem 2rem;
+  }
+}
+
+/* Small tablet / large phone: stack panels, form stays first */
+@media (max-width: 860px) {
+  .provider-register-page {
+    grid-template-columns: 1fr;
+  }
+
+  .provider-register-right {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .provider-register-left {
+    order: 2;
+    min-height: 260px;
+  }
+
+  .provider-image-wrapper {
+    min-height: 260px;
+  }
+
+  .provider-image-content {
+    padding: 2.25rem 1.75rem;
+    max-width: 100%;
+  }
+
+  .provider-image-content h1 {
+    font-size: clamp(1.55rem, 5vw, 2rem);
+  }
+
+  .provider-image-content > p {
+    max-width: 46ch;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+/* Phone */
+@media (max-width: 480px) {
+  .provider-register-right {
+    padding: 1.75rem 1rem;
+  }
+
+  .provider-register-card {
+    padding: 1.5rem;
+    border-radius: var(--radius-m);
+  }
+
+  .register-header {
+    gap: 0.7rem;
+  }
+
+  .register-header h2 {
+    font-size: 1.35rem;
+  }
+
+  .provider-image-content {
+    padding: 2rem 1.25rem;
+  }
+
+  .provider-brand {
+    font-size: 0.82rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .provider-image-content h1 {
+    font-size: 1.4rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .provider-image-content > p {
+    font-size: 0.92rem;
+  }
+
+  .benefit-item p {
+    font-size: 0.88rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 0.68rem 0.8rem;
+  }
+
+  .provider-register-btn {
+    padding: 0.8rem 1rem;
+  }
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .provider-register-btn,
+  .form-group input,
+  .form-group select {
+    transition: none;
+  }
+}

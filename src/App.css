@@ -1,38 +1,716 @@
-.App {
-  text-align: center;
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+  background: #111;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* =========================================
+   MAIN SPLIT PAGE
+========================================= */
+
+.split-page {
+  width: 100%;
+  height: 100vh;
+
   display: flex;
-  flex-direction: column;
+
+  background: #111;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   EACH SIDE
+========================================= */
+
+.split-side {
+  position: relative;
+
+  width: 50%;
+  height: 100vh;
+
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+
+  overflow: hidden;
+
+  cursor: pointer;
+
+  transition:
+    width 0.7s cubic-bezier(0.77, 0, 0.175, 1),
+    transform 0.7s ease;
+}
+
+
+/* =========================================
+   CUSTOMER BACKGROUND
+========================================= */
+
+.customer-side {
+  background-image:
+    url("https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80");
+
+  background-size: cover;
+  background-position: center;
+
+  transition:
+    width 0.7s ease,
+    background-position 0.7s ease;
+}
+
+
+/* =========================================
+   SERVICE BACKGROUND
+========================================= */
+
+.service-side {
+  background-image:
+    url("https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1600&q=80");
+
+  background-size: cover;
+  background-position: center;
+
+  transition:
+    width 0.7s ease,
+    background-position 0.7s ease;
+}
+
+
+/* =========================================
+   DARK OVERLAY
+========================================= */
+
+.overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.48);
+
+  transition:
+    background 0.6s ease,
+    backdrop-filter 0.6s ease;
+}
+
+
+/* =========================================
+   ACTIVE SIDE
+========================================= */
+
+.split-side.active {
+  width: 68%;
+}
+
+
+/* =========================================
+   INACTIVE SIDE
+========================================= */
+
+.split-side.inactive {
+  width: 32%;
+}
+
+
+/* =========================================
+   ACTIVE OVERLAY
+========================================= */
+
+.split-side.active .overlay {
+  background: rgba(0, 0, 0, 0.30);
+}
+
+
+/* =========================================
+   CONTENT BOX
+========================================= */
+
+.content-box {
+  position: relative;
+
+  z-index: 10;
+
+  width: min(420px, 80%);
+
+  padding: 45px 40px;
+
+  text-align: center;
+
   color: white;
+
+  background: rgba(255, 255, 255, 0.13);
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border-radius: 25px;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transform: translateY(40px) scale(0.94);
+
+  transition:
+    opacity 0.45s ease,
+    transform 0.55s ease,
+    visibility 0.45s ease;
 }
 
-.App-link {
-  color: #61dafb;
+
+/* =========================================
+   SHOW CONTENT WHEN ACTIVE
+========================================= */
+
+.split-side.active .content-box {
+  opacity: 1;
+
+  visibility: visible;
+
+  transform: translateY(0) scale(1);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+/* =========================================
+   ICON
+========================================= */
+
+.icon {
+  width: 70px;
+  height: 70px;
+
+  margin: 0 auto 20px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.20);
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  border-radius: 50%;
+
+  font-size: 32px;
+
+  transition: transform 0.3s ease;
 }
+
+
+.split-side.active .icon {
+  transform: scale(1.08);
+}
+
+
+/* =========================================
+   HEADING
+========================================= */
+
+.content-box h1 {
+  font-size: 42px;
+
+  margin-bottom: 15px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.content-box p {
+  font-size: 16px;
+
+  line-height: 1.7;
+
+  color: rgba(255, 255, 255, 0.90);
+
+  margin-bottom: 28px;
+}
+
+
+/* =========================================
+   LOGIN BUTTON
+========================================= */
+
+.content-box button {
+  width: 100%;
+
+  padding: 15px 20px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: #111;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+.content-box button:hover {
+  transform: translateY(-3px);
+
+  background: #111;
+
+  color: white;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.30);
+}
+
+
+.content-box button:active {
+  transform: translateY(0);
+}
+
+
+/* =========================================
+   REGISTER TEXT
+========================================= */
+
+.register-text {
+  display: block;
+
+  margin-top: 20px;
+
+  font-size: 13px;
+
+  color: rgba(255, 255, 255, 0.80);
+}
+
+
+.register-text b {
+  color: white;
+
+  cursor: pointer;
+
+  text-decoration: underline;
+
+  transition: opacity 0.3s ease;
+}
+
+
+.register-text b:hover {
+  opacity: 0.75;
+}
+
+
+/* =========================================
+   SIDE TITLE
+========================================= */
+
+.side-title {
+  position: absolute;
+
+  bottom: 45px;
+  left: 45px;
+
+  z-index: 8;
+
+  color: white;
+
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+
+/* =========================================
+   SIDE NUMBER
+========================================= */
+
+.side-title span {
+  font-size: 13px;
+
+  opacity: 0.70;
+
+  letter-spacing: 3px;
+}
+
+
+/* =========================================
+   SIDE HEADING
+========================================= */
+
+.side-title h2 {
+  font-size: 20px;
+
+  letter-spacing: 5px;
+
+  margin-top: 8px;
+}
+
+
+/* =========================================
+   HIDE TITLE WHEN ACTIVE
+========================================= */
+
+.split-side.active .side-title {
+  opacity: 0;
+
+  transform: translateY(20px);
+}
+
+
+/* =========================================
+   BACKGROUND ZOOM
+========================================= */
+
+.split-side.active {
+  background-size: cover;
+
+  background-position: center;
+}
+
+
+/* =========================================
+   DESKTOP
+========================================= */
+
+@media (min-width: 769px) {
+
+  .split-side:hover {
+    z-index: 2;
+  }
+
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1024px) {
+
+  .content-box {
+    width: 380px;
+
+    padding: 38px 30px;
+  }
+
+  .content-box h1 {
+    font-size: 36px;
+  }
+
+  .side-title {
+    left: 30px;
+    bottom: 30px;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+  body {
+    overflow: auto;
+  }
+
+  .split-page {
+    width: 100%;
+
+    height: 100vh;
+
+    min-height: 700px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow-y: auto;
+  }
+
+
+  /* -----------------------------------------
+     SIDES
+  ----------------------------------------- */
+
+  .split-side {
+    width: 100%;
+
+    height: 50vh;
+
+    min-height: 350px;
+
+    flex-shrink: 0;
+
+    transition:
+      height 0.6s ease,
+      width 0.6s ease;
+  }
+
+
+  /* -----------------------------------------
+     ACTIVE MOBILE SIDE
+  ----------------------------------------- */
+
+  .split-side.active {
+    width: 100%;
+
+    height: 70vh;
+
+    min-height: 500px;
+  }
+
+
+  /* -----------------------------------------
+     INACTIVE MOBILE SIDE
+  ----------------------------------------- */
+
+  .split-side.inactive {
+    width: 100%;
+
+    height: 30vh;
+
+    min-height: 220px;
+  }
+
+
+  /* -----------------------------------------
+     CONTENT
+  ----------------------------------------- */
+
+  .content-box {
+    width: 85%;
+
+    max-width: 420px;
+
+    padding: 30px 25px;
+
+    border-radius: 22px;
+
+    transform: translateY(30px) scale(0.95);
+  }
+
+
+  .split-side.active .content-box {
+    transform: translateY(0) scale(1);
+  }
+
+
+  /* -----------------------------------------
+     HEADING
+  ----------------------------------------- */
+
+  .content-box h1 {
+    font-size: 32px;
+  }
+
+
+  /* -----------------------------------------
+     DESCRIPTION
+  ----------------------------------------- */
+
+  .content-box p {
+    font-size: 14px;
+
+    line-height: 1.6;
+  }
+
+
+  /* -----------------------------------------
+     ICON
+  ----------------------------------------- */
+
+  .icon {
+    width: 60px;
+
+    height: 60px;
+
+    font-size: 27px;
+  }
+
+
+  /* -----------------------------------------
+     SIDE TITLE
+  ----------------------------------------- */
+
+  .side-title {
+    left: 25px;
+
+    bottom: 25px;
+  }
+
+
+  .side-title h2 {
+    font-size: 17px;
+
+    letter-spacing: 4px;
+  }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+  .split-page {
+    min-height: 650px;
+  }
+
+
+  .split-side {
+    min-height: 320px;
+  }
+
+
+  .split-side.active {
+    min-height: 480px;
+  }
+
+
+  .split-side.inactive {
+    min-height: 190px;
+  }
+
+
+  .content-box {
+    width: 88%;
+
+    padding: 27px 20px;
+
+    border-radius: 20px;
+  }
+
+
+  .content-box h1 {
+    font-size: 28px;
+
+    margin-bottom: 12px;
+  }
+
+
+  .content-box p {
+    font-size: 13px;
+
+    margin-bottom: 22px;
+  }
+
+
+  .content-box button {
+    padding: 13px;
+
+    font-size: 14px;
+  }
+
+
+  .register-text {
+    font-size: 12px;
+
+    margin-top: 16px;
+  }
+
+
+  .icon {
+    width: 55px;
+
+    height: 55px;
+
+    margin-bottom: 15px;
+
+    font-size: 24px;
+  }
+
+}
+
+
+/* =========================================
+   VERY SMALL SCREEN
+========================================= */
+
+@media (max-width: 360px) {
+
+  .content-box {
+    padding: 22px 16px;
+  }
+
+
+  .content-box h1 {
+    font-size: 25px;
+  }
+
+
+  .content-box p {
+    font-size: 12px;
+  }
+
+
+  .content-box button {
+    font-size: 13px;
+
+    padding: 12px;
+  }
+
+}
+
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+.split-side:focus-within {
+  outline: 3px solid rgba(255, 255, 255, 0.8);
+
+  outline-offset: -3px;
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .split-side,
+  .content-box,
+  .side-title,
+  .icon,
+  .content-box button {
+    transition: none;
+  }
+
+}
+
